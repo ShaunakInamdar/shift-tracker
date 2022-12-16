@@ -12,7 +12,6 @@ router.post('/new', (req: Request, res: Response) => {
 router.get('/:date', (req: Request, res: Response) => {
     const date = req.params.date;
     res.send(`List events for date ${date}`)
-    // res.render('events', { events: validateEvents() });
 });
 
 router

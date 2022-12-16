@@ -5,15 +5,14 @@ const app: Application = express();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// app.use(express.static(__dirname + '/static'));
 app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.get('/', async (req: Request, res: Response) => {
     const events = await validateEvents();
     console.log(events);
-    
-    res.render('home', { greet : 'World', events: events });
+
+    res.render('home', { greet: 'World', events: events });
 });
 
 const eventsRouter = require('../routes/events');
