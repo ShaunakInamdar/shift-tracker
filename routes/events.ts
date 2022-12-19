@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { deleteEvent } from '../controllers/deletes';
 import { postEvent } from '../controllers/posts';
 const router = express.Router();
 
@@ -29,8 +30,7 @@ router
     })
     // delete event with id
     .delete((req: Request, res: Response) => {
-        const id = req.params.id;
-        res.send(`Delete event with id ${id}`)
+        deleteEvent(req, res)
     });
 
 router.param('id', (req: Request, res: Response, next: any, id: string) => {

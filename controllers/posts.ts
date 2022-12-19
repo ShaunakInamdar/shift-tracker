@@ -6,7 +6,7 @@ const fs = require('fs');
 
 
 // write new events to events.json as an async function
-const writeEvents = async (events: Event[]) => {
+export const writeEvents = async (events: Event[]) => {
     await fs.writeFile('src/events.json', JSON.stringify(events), (err: any) => {
         if (err) {
             console.log(err);

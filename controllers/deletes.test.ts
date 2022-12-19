@@ -9,7 +9,7 @@ describe('deleteEvent', () => {
         // mock request object
         const req: Request = {
             params: {
-                id: 3,
+                id: 53,
             },
         } as any;
         
@@ -17,7 +17,29 @@ describe('deleteEvent', () => {
         const res: Response = {
             send: jest.fn(),
         } as any;
+        const lengthOfEvents = events.length;
         deleteEvent(req, res);
-        expect(events).not.toContainEqual({id: 3});
+        expect(events.length).toBe(lengthOfEvents - 1);
+    });
+});
+
+// test the functionality of the deleteEvent function in deletes.ts
+
+describe('deleteEvent', () => {
+    it('should throw error if event not found', () => {
+        // mock request object
+        const req: Request = {
+            params: {
+                id: 1000,
+            },
+        } as any;
+        
+        // mock response object
+        const res: Response = {
+            send: jest.fn(),
+        } as any;
+        expect(() => {
+            deleteEvent(req, res);
+        }).toThrowError('Event not found');
     });
 });
