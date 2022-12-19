@@ -12,7 +12,7 @@ describe('FetchEvents from JSON database', () => {
 });
 
 describe('Validate Events with event interface and return list of events', () => {
-    it('should return events as list', () => {
+    it('should return events as a Promised list', () => {
         const events = validateEvents();
         // expects events to be a Array of Promises
         expect(events).toBeInstanceOf(Promise<Event[]>);
