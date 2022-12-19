@@ -1,8 +1,18 @@
 // add event to database
 import { Request, Response } from 'express';
-import { readFile } from 'fs/promises';
 import { Event } from '../src/fetchEvents';
 const express = require('express');
+const fs = require('fs');
+
+
+// write new events to events.json as an async function
+const writeEvents = async (events: Event[]) => {
+    await fs.writeFile('src/events.json', JSON.stringify(events), (err: any) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+};
 
 // create new event (post request) named postEvent()
 export const postEvent = (req: Request, res: Response) => {
@@ -24,12 +34,7 @@ export const postEvent = (req: Request, res: Response) => {
     // add newEvent to database (append newEvent to events.json)
     const events = require('../src/events.json');
     events.push(newEvent);
-    // write new events to events.json
-    const fs = require('fs');
-    fs.writeFile('src/events.json', JSON.stringify(events), (err: any) => {
-        if (err) throw err;      
-        res.send("New event added to database");
-        console.log('The file has been saved!');
-    });
+    writeEvents(events);
+    res.send('Event added to database');
     
 };
