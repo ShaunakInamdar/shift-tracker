@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import express, { Application, Request, Response, NextFunction } from 'express'
 import { validateEvents } from './fetchEvents';
 const app: Application = express();
@@ -6,6 +7,7 @@ const app: Application = express();
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // routes
 app.get('/', async (req: Request, res: Response) => {
