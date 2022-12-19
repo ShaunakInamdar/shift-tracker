@@ -11,8 +11,6 @@ export interface Event {
 export const fetchEvents = async () => {
     const events = await fs.readFile('src/events.json', 'utf-8');
     return JSON.parse(events);
-
-
 };
 
 export const validateEvents = async () => {

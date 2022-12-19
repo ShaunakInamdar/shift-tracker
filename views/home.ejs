@@ -19,15 +19,23 @@
             <th>End</th>
             <th>Shift</th>
         </tr>
-       
+
         <% for(var event of events) { %>
-        <tr>
-            <td><%= event.date %></td>
-            <td><%= event.start %></td>
-            <td><%= event.end %></td>
-            <td><%= event.shift %></td>
-        </tr>
-        <% }; %> 
+            <tr>
+                <td>
+                    <%= event.date %>
+                </td>
+                <td>
+                    <%= event.start %>
+                </td>
+                <td>
+                    <%= event.end %>
+                </td>
+                <td>
+                    <%= event.shift %>
+                </td>
+            </tr>
+            <% }; %>
     </table>
 </body>
 
