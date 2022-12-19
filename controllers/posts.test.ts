@@ -3,10 +3,11 @@ import { postEvent } from './posts';
 import { Event } from '../src/fetchEvents';
 import { Request, Response } from 'express';
 
+const events = require('../src/events.json');
+
 describe('postEvent', () => {
     it('should add a new event to the database and send response to the client', () => {
         const newEvent = {
-            id: 1,
             date: '2022-12-19',
             start: '08:00:00',
             end: '16:00:00',
@@ -21,7 +22,9 @@ describe('postEvent', () => {
         const res: Response = {
             send: jest.fn(),
         } as any;
+        
+        const lengthOfEvents = events.length;
         postEvent(req, res);
-        expect(res.send).toHaveBeenCalledWith('Event added to database');
+        expect(events.length).toBe(lengthOfEvents + 1);
     });
 });

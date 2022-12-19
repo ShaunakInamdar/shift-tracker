@@ -23,13 +23,14 @@ router.get('/view/:date', (req: Request, res: Response) => {
 router
     .route("/:id")
     // get event with id
-    // .get((req: Request, res: Response) => {
-    //     const id = req.params.id;
-    //     res.send("Get event with id")
-    // })
+    .get((req: Request, res: Response) => {
+        const id = req.params.id;
+        res.send(`Get event with id ${id}`)
+    })
     // delete event with id
     .delete((req: Request, res: Response) => {
-        res.send("Delete event with id")
+        const id = req.params.id;
+        res.send(`Delete event with id ${id}`)
     });
 
 router.param('id', (req: Request, res: Response, next: any, id: string) => {
