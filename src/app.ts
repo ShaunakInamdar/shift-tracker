@@ -12,8 +12,7 @@ app.use(bodyParser.json());
 // routes
 app.get('/', async (req: Request, res: Response) => {
     const events = await validateEvents();
-    console.log(events);
-
+    // console.log(events);
     res.render('home', { greet: 'World', events: events });
 });
 
