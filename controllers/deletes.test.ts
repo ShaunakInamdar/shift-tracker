@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 
 const events = require('../src/events.json');
 
-describe('deleteEvent', () => {
+describe('deleteEvent with valid id', () => {
     it('should delete an event from the database and send response to the client', () => {
         // mock request object
         const req: Request = {
@@ -20,12 +20,13 @@ describe('deleteEvent', () => {
         const lengthOfEvents = events.length;
         deleteEvent(req, res);
         expect(events.length).toBe(lengthOfEvents - 1);
+
     });
 });
 
 // test the functionality of the deleteEvent function in deletes.ts
 
-describe('deleteEvent', () => {
+describe('deleteEvent with invalid id', () => {
     it('should throw error if event not found', () => {
         // mock request object
         const req: Request = {
