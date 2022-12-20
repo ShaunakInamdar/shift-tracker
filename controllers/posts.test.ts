@@ -1,12 +1,13 @@
 // testing functionality of postEvents function in posts.ts
 import { postEvent } from './posts';
-import { Event } from './fetchEvents';
 import { Request, Response } from 'express';
+import { readFileSync } from 'fs';
+import { Event } from '../interfaces/interfaces';
+import { fetchEvents } from './fetchEvents';
 
-const events = require('../src/events.json');
 
 describe('postEvent', () => {
-    it('should add a new event to the database and send response to the client', () => {
+    it('should add a new event to the database and send response to the client', async () => {
         const newEvent = {
             date: '2022-12-19',
             start: '08:00:00',
@@ -22,9 +23,13 @@ describe('postEvent', () => {
         const res: Response = {
             send: jest.fn(),
         } as any;
-        
+        // get the length of the events array before adding a new event
+        const events = await fetchEvents();
         const lengthOfEvents = events.length;
-        postEvent(req, res);
-        expect(events.length).toBe(lengthOfEvents + 1);
+        await postEvent(req, res);
+        // get the length of the events array after adding a new event
+        const eventsAfter = await fetchEvents();
+        const lengthOfEventsAfter = eventsAfter.length;
+        expect(lengthOfEventsAfter).toBe(lengthOfEvents + 1);
     });
 });

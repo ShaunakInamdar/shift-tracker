@@ -2,7 +2,7 @@
 
 import { Request, Response } from 'express';
 import { getEventsDate } from '../controllers/getEventsDate';
-import { Event } from './fetchEvents';
+import { Event } from '../interfaces/interfaces';
 
 describe('getEventsByDate', () => {
     it("should return an array of events for given date", async () => {

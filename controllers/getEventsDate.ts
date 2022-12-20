@@ -1,5 +1,5 @@
 // get events by 'date' 
-import { Event } from './fetchEvents';
+import { Event } from '../interfaces/interfaces';
 import { Request, Response } from 'express';
 import { parseDate } from './posts';
 

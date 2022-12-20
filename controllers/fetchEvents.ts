@@ -1,12 +1,5 @@
 import { promises as fs } from 'fs';
-
-export interface Event {
-    id: number;
-    date: string;
-    start: Date;
-    end: Date;
-    shift: string;
-}
+import { Event } from '../interfaces/interfaces';
 
 export const fetchEvents = async () => {
     const events = await fs.readFile('src/events.json', 'utf-8');
@@ -19,7 +12,6 @@ export const validateEvents = async () => {
     events.forEach((event: Event) => {
         if (event.date && event.start && event.end && event.shift) {
             validEvents.push(event);
-
         }
     });
     return validEvents;

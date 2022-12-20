@@ -1,15 +1,24 @@
-import e, { Request, Response } from 'express';
-import { Event } from './fetchEvents';
-import { writeEvents } from './posts';
+import { Request, Response } from 'express';
+import { Event } from '../interfaces/interfaces';
+import { fetchEvents } from './fetchEvents';
+import fs from 'fs';
 
-const fs = require('fs');
-const events = require('../src/events.json');
+const updateDB = async (events: Event[]) => {
+    const eventsJSON = JSON.stringify(events);
+    fs.writeFile('src/events.json', eventsJSON, (err: any) => {
+        if (err) {
+            throw new Error('Error writing to file');
+        }
 
-export const deleteEvent = (req: Request, res: Response) => {
+    });
+};
+
+export const deleteEvent = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     
+    const events: Event[] = await fetchEvents();
     const index = events.findIndex((event: Event) => event.id === id);
-    console.log(index);
+    // console.log(index);
     
     if (index !== -1) {
         events.splice(index, 1);
@@ -17,6 +26,7 @@ export const deleteEvent = (req: Request, res: Response) => {
     else {
         throw new Error('Event not found');
     }
-    writeEvents(events)
+    // write the updated events array to the events.json file
+    updateDB(events);
     res.send('Event deleted from database');
 };

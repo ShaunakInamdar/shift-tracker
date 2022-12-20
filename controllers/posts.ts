@@ -1,14 +1,20 @@
 // add event to database
 import { Request, Response } from 'express';
-import { Event } from './fetchEvents';
-const express = require('express');
-const fs = require('fs');
+import { Event } from '../interfaces/interfaces';
+import * as fs from 'fs';
+import { readFileSync } from 'fs';
+import { fetchEvents } from './fetchEvents';
+
+// // store contents of events.json in events array
+// const data = readFileSync('src/events.json', 'utf8');
+// const events: Event[] = JSON.parse(data);
+
 
 
 // append new events to events.json as an async function
-export const writeEvents = async (events: Event[]) => {
+export const writeEvents = (events: Event[]) => {
     const eventsJSON = JSON.stringify(events);
-    await fs.writeFile('src/events.json', eventsJSON, (err: Error) => {
+    fs.writeFile('src/events.json', eventsJSON, (err) => {
         if (err) {
             throw new Error('Error writing to file');
         }
@@ -18,20 +24,20 @@ export const writeEvents = async (events: Event[]) => {
 // function to parse date to yyyy-mm-dd format
 export const parseDate = (date: Date) => {
     var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
-                    .toISOString()
-                    .split("T")[0];
+    .toISOString()
+    .split("T")[0];
     return dateString;
 };
 
 // create new event (post request) named postEvent()
-export const postEvent = (req: Request, res: Response) => {
+export const postEvent = async (req: Request, res: Response) => {
     const newDate = new Date(Date.parse(req.body.date)) as Date;
     const newDateFormatted = parseDate(newDate);
     const newStart = req.body.start as Date;
     const newEnd = req.body.end as Date;    
     
     const newShift = req.body.shift;
-
+    
     const newEvent: Event = {
         id: Math.floor(Math.random() * 100),
         date: newDateFormatted,
@@ -39,12 +45,12 @@ export const postEvent = (req: Request, res: Response) => {
         end: newEnd,
         shift: newShift,
     };
+    const events = await fetchEvents();
     
-    console.log(newEvent);
-    // add newEvent to database (append newEvent to events.json)
-    const events = require('../src/events.json');
     events.push(newEvent);
     writeEvents(events);
+    console.log(events.length);
+    
     res.send('Event added to database');
     
 };
