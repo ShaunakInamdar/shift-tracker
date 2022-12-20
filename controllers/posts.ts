@@ -5,11 +5,12 @@ const express = require('express');
 const fs = require('fs');
 
 
-// write new events to events.json as an async function
+// append new events to events.json as an async function
 export const writeEvents = async (events: Event[]) => {
-    await fs.writeFile('src/events.json', JSON.stringify(events), (err: any) => {
+    const eventsJSON = JSON.stringify(events);
+    await fs.writeFile('src/events.json', eventsJSON, (err: Error) => {
         if (err) {
-            console.log(err);
+            throw new Error('Error writing to file');
         }
     });
 };
