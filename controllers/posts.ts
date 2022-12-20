@@ -17,7 +17,7 @@ export const writeEvents = async (events: Event[]) => {
 
 // create new event (post request) named postEvent()
 export const postEvent = (req: Request, res: Response) => {
-    const newDate = new Date(Date.parse(req.body.date));
+    const newDate = new Date(Date.parse(req.body.date)) as Date;
     const newStart = req.body.start as Date;
     const newEnd = req.body.end as Date;    
     

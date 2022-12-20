@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { deleteEvent } from '../controllers/deletes';
+import { getEventsDate } from '../controllers/getEventsDate';
 import { postEvent } from '../controllers/posts';
 const router = express.Router();
 
@@ -17,8 +18,8 @@ router.post('/new', (req: Request, res: Response) => {
 
 // list events of a date
 router.get('/view/:date', (req: Request, res: Response) => {
-    const date = req.params.date;
-    res.send(`List events for date ${date}`)
+    getEventsDate(req, res);
+    // res.render('eventsByDate');
 });
 
 router
