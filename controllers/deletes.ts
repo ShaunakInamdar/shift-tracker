@@ -1,5 +1,5 @@
 import e, { Request, Response } from 'express';
-import { Event } from '../src/fetchEvents';
+import { Event } from './fetchEvents';
 import { writeEvents } from './posts';
 
 const fs = require('fs');

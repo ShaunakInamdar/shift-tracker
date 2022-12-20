@@ -1,6 +1,6 @@
 // add event to database
 import { Request, Response } from 'express';
-import { Event } from '../src/fetchEvents';
+import { Event } from './fetchEvents';
 const express = require('express');
 const fs = require('fs');
 

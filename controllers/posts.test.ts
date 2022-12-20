@@ -1,6 +1,6 @@
 // testing functionality of postEvents function in posts.ts
 import { postEvent } from './posts';
-import { Event } from '../src/fetchEvents';
+import { Event } from './fetchEvents';
 import { Request, Response } from 'express';
 
 const events = require('../src/events.json');
