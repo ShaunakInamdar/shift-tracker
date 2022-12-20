@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 
 export interface Event {
     id: number;
-    date: Date;
+    date: string;
     start: Date;
     end: Date;
     shift: string;
