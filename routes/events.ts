@@ -24,11 +24,10 @@ router.get('/view', async (req: Request, res: Response) => {
     res.render('eventsByDate', { date: date, events: dayEvents });
 });
 
-router
-.route("/:id")
-// delete event with id
-.delete((req: Request, res: Response) => {
-    deleteEvent(req, res)
+// delete event from database
+router.get('/delete/', (req: Request, res: Response) => {
+    // res.send("Delete event with given id")
+    deleteEvent(req, res);
 });
 
 router.param('id', (req: Request, res: Response, next: any, id: string) => {

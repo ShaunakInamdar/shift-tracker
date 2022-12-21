@@ -14,7 +14,7 @@ const updateDB = async (events: Event[]) => {
 };
 
 export const deleteEvent = async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.query.id as string);
     
     const events: Event[] = await fetchEvents();
     const index = events.findIndex((event: Event) => event.id === id);

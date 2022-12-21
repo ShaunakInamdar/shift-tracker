@@ -17,6 +17,7 @@
             <th>Start</th>
             <th>End</th>
             <th>Shift</th>
+            <th>Action</th>
         </tr>
 
         <% for(var event of events) { %>
@@ -29,6 +30,12 @@
                 </td>
                 <td>
                     <%= event.shift %>
+                </td>
+                <td>
+                    <form action="/events/delete" method="get">
+                        <input type="hidden" name="id" value="<%= event.id %>">
+                        <button type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
             <% }; %>

@@ -8,7 +8,7 @@ describe('deleteEvent with valid id', () => {
     it('should delete an event from the database and send response to the client', async () => {
         // mock request object
         const req: Request = {
-            params: {
+            query: {
                 id: 76,
             },
         } as any;
