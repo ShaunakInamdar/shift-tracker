@@ -10,13 +10,13 @@
     <h1>
         Add New Event
     </h1>
-    <form action="/newEvent" method="POST">
+    <form action="/events/new" method="POST">
         <label for="date">Date</label>
         <input type="date" name="date" id="date">
         <label for="start">Start</label>
-        <input type="time" name="start" id="start">
+        <input type="time" name="start" id="start" step="1">
         <label for="end">End</label>
-        <input type="time" name="end" id="end">
+        <input type="time" name="end" id="end" step="1">
         <label for="shift">Shift</label>
         <input type="text" name="shift" id="shift">
         <button type="submit">Add</button>

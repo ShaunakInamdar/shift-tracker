@@ -6,7 +6,7 @@ const router = express.Router();
 
 // create new event
 router.get('/new', (req: Request, res: Response) => {
-    res.send("New event form for given date")
+    // res.send("New event form for given date")
     res.render('newEventForm');
     // call post request to add event to database
 });
@@ -17,9 +17,11 @@ router.post('/new', (req: Request, res: Response) => {
 });
 
 // list events of a date
-router.get('/view/:date', async (req: Request, res: Response) => {
+router.get('/view', async (req: Request, res: Response) => {
+    // res.send("List events for given date")
     const dayEvents = await getEventsDate(req, res);
-    res.render('eventsByDate', { date: req.params.date, events: dayEvents });
+    const date = new Date(req.query.date as string).toDateString();
+    res.render('eventsByDate', { date: date, events: dayEvents });
 });
 
 router
