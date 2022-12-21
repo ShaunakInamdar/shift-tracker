@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Event Add</title>
+</head>
+<body>
+    <h1>
+        Add New Event
+    </h1>
+    <form action="/newEvent" method="POST">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+        <label for="start">Start</label>
+        <input type="time" name="start" id="start">
+        <label for="end">End</label>
+        <input type="time" name="end" id="end">
+        <label for="shift">Shift</label>
+        <input type="text" name="shift" id="shift">
+        <button type="submit">Add</button>
+</body>
+</html>

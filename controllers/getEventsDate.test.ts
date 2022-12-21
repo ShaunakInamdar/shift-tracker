@@ -9,7 +9,7 @@ describe('getEventsByDate', () => {
         
         // mock request object
         const req: Request = {
-            body: {
+            params: {
                 date: '2022-12-19',
             }
         } as any;
