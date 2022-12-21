@@ -1,7 +1,7 @@
 export interface Event {
     id: number;
     date: string;
-    start: Date;
-    end: Date;
+    start: string;
+    end: string;
     shift: string;
 }

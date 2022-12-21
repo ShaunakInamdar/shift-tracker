@@ -23,24 +23,21 @@ export const writeEvents = (events: Event[]) => {
 
 // function to parse date to yyyy-mm-dd format
 export const parseDate = (date: Date) => {
-    var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
-    .toISOString()
-    .split("T")[0];
+    const dateString = new Date(date).toISOString().split("T")[0];
     return dateString;
 };
 
 // create new event (post request) named postEvent()
 export const postEvent = async (req: Request, res: Response) => {
-    const newDate = new Date(Date.parse(req.body.date)) as Date;
-    const newDateFormatted = parseDate(newDate);
-    const newStart = req.body.start as Date;
-    const newEnd = req.body.end as Date;    
+    const newDate = new Date(Date.parse(req.params.date)).toISOString().split('T')[0];
+    const newStart = new Date(req.params.start).toTimeString().split(' ')[0];
+    const newEnd = new Date(req.params.end).toTimeString().split(' ')[0];    
     
-    const newShift = req.body.shift;
+    const newShift = req.params.shift;
     
     const newEvent: Event = {
         id: Math.floor(Math.random() * 100),
-        date: newDateFormatted,
+        date: newDate,
         start: newStart,
         end: newEnd,
         shift: newShift,
