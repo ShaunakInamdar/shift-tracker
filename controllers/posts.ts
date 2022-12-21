@@ -44,6 +44,6 @@ export const postEvent = async (req: Request, res: Response) => {
     writeEvents(events);
     console.log(events.length);
     
-    res.send('Event added to database');
+    res.redirect('/events/view?date=' + req.body.date);
     
 };

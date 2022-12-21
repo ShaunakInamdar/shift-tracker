@@ -28,5 +28,4 @@ export const deleteEvent = async (req: Request, res: Response) => {
     }
     // write the updated events array to the events.json file
     updateDB(events);
-    res.send('Event deleted from database');
 };

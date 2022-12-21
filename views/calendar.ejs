@@ -11,13 +11,19 @@
     <h1>
         Calendar
     </h1>
-    <p>
-        Select a date to view shifts for that day.
-    </p>
-    <form action="/events/view/" method="GET">
-        <label for="date">Date:</label>
-        <input type="date" name="date" id="date">
-        <input type="submit" value="Submit">
-    </form>
+    <div class="buttons">
+        <a href="/events/new">Add New Event</a>
+        <a href="/">Calendar</a>
+    </div>
+    <div>
+        <p>
+            Select a date to view shifts for that day.
+        </p>
+        <form action="/events/view/" method="GET">
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>

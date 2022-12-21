@@ -12,31 +12,35 @@
     <h1>
         Hello <%= greet %>
     </h1>
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Shift</th>
-        </tr>
-
-        <% for(var event of events) { %>
+    <% include('buttons') %> 
+    <div>
+        <table>
             <tr>
-                <td>
-                    <%= event.date %>
-                </td>
-                <td>
-                    <%= event.start %>
-                </td>
-                <td>
-                    <%= event.end %>
-                </td>
-                <td>
-                    <%= event.shift %>
-                </td>
+                <th>Date</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Shift</th>
             </tr>
-            <% }; %>
-    </table>
+    
+            <% for(var event of events) { %>
+                <tr>
+                    <td>
+                        <%= event.date %>
+                    </td>
+                    <td>
+                        <%= event.start %>
+                    </td>
+                    <td>
+                        <%= event.end %>
+                    </td>
+                    <td>
+                        <%= event.shift %>
+                    </td>
+                </tr>
+                <% }; %>
+        </table>
+    </div>
+
 </body>
 
 </html>
