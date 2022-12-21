@@ -9,7 +9,7 @@ describe('deleteEvent with valid id', () => {
         // mock request object
         const req: Request = {
             params: {
-                id: 64,
+                id: 76,
             },
         } as any;
         
