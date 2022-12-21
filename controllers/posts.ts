@@ -21,19 +21,15 @@ export const writeEvents = (events: Event[]) => {
     });
 };
 
-// function to parse date to yyyy-mm-dd format
-export const parseDate = (date: Date) => {
-    const dateString = new Date(date).toISOString().split("T")[0];
-    return dateString;
-};
-
 // create new event (post request) named postEvent()
 export const postEvent = async (req: Request, res: Response) => {
-    const newDate = new Date(Date.parse(req.params.date)).toISOString().split('T')[0];
-    const newStart = new Date(req.params.start).toTimeString().split(' ')[0];
-    const newEnd = new Date(req.params.end).toTimeString().split(' ')[0];    
-    
-    const newShift = req.params.shift;
+    // const newDate = new Date(Date.parse(req.params.date)).toISOString().split('T')[0];
+    const newDate = req.body.date;
+    // const newStart = new Date(newDate + ' ' + req.params.start).toTimeString().split(' ')[0];
+    const newStart = req.body.start;
+    // const newEnd = new Date(newDate + ' ' + req.params.end).toTimeString().split(' ')[0];    
+    const newEnd = req.body.end;
+    const newShift = req.body.shift;
     
     const newEvent: Event = {
         id: Math.floor(Math.random() * 100),
