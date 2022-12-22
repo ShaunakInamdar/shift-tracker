@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express, { Application, Request, Response, NextFunction } from 'express'
 import { validateEvents } from '../controllers/fetchEvents';
-const app: Application = express();
+export const app: Application = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
