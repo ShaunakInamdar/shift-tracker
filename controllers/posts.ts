@@ -41,9 +41,8 @@ export const postEvent = async (req: Request, res: Response) => {
     const events = await fetchEvents();
     
     events.push(newEvent);
-    writeEvents(events);
-    console.log(events.length);
-    
+    await writeEvents(events);
+    console.log("Event added");
     res.redirect('/events/view?date=' + req.body.date);
     
 };

@@ -27,5 +27,8 @@ export const deleteEvent = async (req: Request, res: Response) => {
         throw new Error('Event not found');
     }
     // write the updated events array to the events.json file
-    updateDB(events);
+    await updateDB(events);
+    console.log("Event deleted");
+    res.redirect('/events/view?date=' + req.query.date);
+    
 };
