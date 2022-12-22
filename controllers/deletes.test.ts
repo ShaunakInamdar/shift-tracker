@@ -9,7 +9,8 @@ describe('deleteEvent with valid id', () => {
         // mock request object
         const req: Request = {
             query: {
-                id: 76,
+                id: 84,
+                date: '2022-12-19',
             },
         } as any;
         
