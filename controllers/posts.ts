@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { Event } from '../interfaces/interfaces';
 import * as fs from 'fs';
 import { readFileSync } from 'fs';
-import { fetchEvents } from './fetchEvents';
+import { fetchEvents, validateEvents } from './fetchEvents';
 
 // // store contents of events.json in events array
 // const data = readFileSync('src/events.json', 'utf8');
@@ -12,7 +12,7 @@ import { fetchEvents } from './fetchEvents';
 
 
 // append new events to events.json as an async function
-export const writeEvents = (events: Event[]) => {
+export const writeEvents = async (events: Event[]) => {
     const eventsJSON = JSON.stringify(events);
     fs.writeFile('src/events.json', eventsJSON, (err) => {
         if (err) {
@@ -38,11 +38,11 @@ export const postEvent = async (req: Request, res: Response) => {
         end: newEnd,
         shift: newShift,
     };
-    const events = await fetchEvents();
+    const events = await validateEvents();
     
     events.push(newEvent);
     await writeEvents(events);
     console.log("Event added");
-    res.redirect('/events/view?date=' + req.body.date);
+    // res.redirect('/events/view?date=' + req.body.date);
     
 };

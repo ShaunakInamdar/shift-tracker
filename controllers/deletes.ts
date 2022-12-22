@@ -29,6 +29,6 @@ export const deleteEvent = async (req: Request, res: Response) => {
     // write the updated events array to the events.json file
     await updateDB(events);
     console.log("Event deleted");
-    res.redirect('/events/view?date=' + req.query.date);
+    // res.redirect('/events/view?date=' + req.query.date);
     
 };

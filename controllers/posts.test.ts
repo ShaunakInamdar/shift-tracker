@@ -20,13 +20,13 @@ describe('postEvent', () => {
         } as any;
         
         // mock response object
-        const res: Response = {
+        const data: Response = {
             send: jest.fn(),
         } as any;
         // get the length of the events array before adding a new event
         const events = await fetchEvents();
         const lengthOfEvents = events.length;
-        await postEvent(req, res);
+        await postEvent(req, data);
         // get the length of the events array after adding a new event
         const eventsAfter = await fetchEvents();
         const lengthOfEventsAfter = eventsAfter.length;

@@ -9,18 +9,19 @@ describe('deleteEvent with valid id', () => {
         // mock request object
         const req: Request = {
             query: {
-                id: 76,
+                id: 21,
+                date: '2022-12-19',
             },
         } as any;
         
         // mock response object
-        const res: Response = {
+        const data: Response = {
             send: jest.fn(),
         } as any;
         
         const events = await fetchEvents();
         const lengthOfEvents = events.length;
-        await deleteEvent(req, res);
+        await deleteEvent(req, data);
         const eventsAfter = await fetchEvents();
         const lengthOfEventsAfter = eventsAfter.length;
         expect(lengthOfEventsAfter).toBe(lengthOfEvents - 1);
@@ -32,8 +33,9 @@ describe('deleteEvent with invalid id', () => {
     it('should throw error if event not found', () => {
         // mock request object
         const req: Request = {
-            params: {
+            query: {
                 id: 1000,
+                date: '2022-12-19'
             },
         } as any;
         
