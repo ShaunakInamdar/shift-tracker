@@ -12,8 +12,9 @@ router.get('/new', (req: Request, res: Response) => {
 });
 
 // add event to database and redirect to list events of a date once the event is added
-router.post('/new', (req: Request, res: Response) => {
-    postEvent(req, res);
+router.post('/new', async (req: Request, res: Response) => {
+    await postEvent(req, res);
+    res.redirect('/events/view?date=' + req.body.date);
     // res.redirect('/events/view?date=' + req.body.date);
 });
 
@@ -26,9 +27,10 @@ router.get('/view', async (req: Request, res: Response) => {
 });
 
 // delete event from database
-router.get('/delete/', (req: Request, res: Response, next: NextFunction) => {
+router.get('/delete/', async (req: Request, res: Response, next: NextFunction) => {
     // res.send("Delete event with given id")
-    deleteEvent(req, res);
+    await deleteEvent(req, res);
+    res.redirect('/events/view?date=' + req.query.date);
 });
 
 router.param('id', (req: Request, res: Response, next: any, id: string) => {

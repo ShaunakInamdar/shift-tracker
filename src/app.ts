@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express, { Application, Request, Response, NextFunction } from 'express'
 import { validateEvents } from '../controllers/fetchEvents';
-export const app: Application = express();
+const app: Application = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -11,10 +11,6 @@ app.use(bodyParser.json());
 
 // routes
 app.get('/', async (req: Request, res: Response) => {
-    // const events = await validateEvents();
-    // console.log(events);
-    // res.render('home', { greet: 'World', events: events });
-    // render a calendar view with events
     res.render('calendar');
 });
 
