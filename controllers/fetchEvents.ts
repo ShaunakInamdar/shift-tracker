@@ -1,9 +1,11 @@
 import { promises as fs } from 'fs';
 import { Event } from '../interfaces/interfaces';
 
+// import eventscollection from database
 export const fetchEvents = async () => {
-    const events = await fs.readFile('src/events.json', 'utf-8');
-    return JSON.parse(events);
+    const eventsCollection = await (global as any).eventsCollection;
+    const events = await eventsCollection.find({}).toArray();
+    return events;
 };
 
 export const validateEvents = async () => {

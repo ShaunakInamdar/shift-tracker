@@ -1,9 +1,29 @@
 import bodyParser from 'body-parser';
 import express, { Application, Request, Response, NextFunction } from 'express'
-import { validateEvents } from '../controllers/fetchEvents';
+import { MongoClient } from 'mongodb';
 const app: Application = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
-// set the view engine to ejs
+const user = process.env.MONGO_USERNAME;
+const password = process.env.MONGO_PASSWORD;
+const url = "mongodb+srv://" + user + ":" + password + "@cluster0.00houac.mongodb.net/?retryWrites=true&w=majority"
+const mongoClient = require ('mongodb').MongoClient;
+
+// connecting to database using a try catch block 
+try {
+    mongoClient.connect(url, { useUnifiedTopology: true }, (err: any, client: any) => {
+        if (err) return console.error(err);
+        console.log('Connected to Database');
+        const db = client.db('calendar');
+        const eventsCollection = db.collection('events');
+        (global as any).eventsCollection = eventsCollection; // this can be used in other files
+    });
+} catch (error) {
+    console.log(error);
+};
+
+
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));

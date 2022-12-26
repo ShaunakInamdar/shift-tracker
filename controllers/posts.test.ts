@@ -1,9 +1,9 @@
 // testing functionality of postEvents function in posts.ts
 import { postEvent } from './posts';
 import { Request, Response } from 'express';
-import { readFileSync } from 'fs';
-import { Event } from '../interfaces/interfaces';
 import { fetchEvents } from './fetchEvents';
+
+// test the postEvent function
 
 
 describe('postEvent', () => {

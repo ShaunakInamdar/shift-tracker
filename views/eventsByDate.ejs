@@ -38,7 +38,7 @@
                     </td>
                     <td>
                         <form action="/events/delete" method="get">
-                            <input type="hidden" name="id" value="<%= event.id %>">
+                            <input type="hidden" name="id" value="<%= event._id %>">
                             <input type="hidden" name="date" value="<%= event.date %>">
                             <button type="submit">Delete</button>
                         </form>

@@ -6,21 +6,17 @@ const router = express.Router();
 
 // create new event
 router.get('/new', (req: Request, res: Response) => {
-    // res.send("New event form for given date")
     res.render('newEventForm');
-    // call post request to add event to database
 });
 
 // add event to database and redirect to list events of a date once the event is added
 router.post('/new', async (req: Request, res: Response) => {
     await postEvent(req, res);
     res.redirect('/events/view?date=' + req.body.date);
-    // res.redirect('/events/view?date=' + req.body.date);
 });
 
 // list events of a date
 router.get('/view', async (req: Request, res: Response) => {
-    // res.send("List events for given date")
     const date = new Date(req.query.date as string).toDateString();
     const dayEvents = await getEventsDate(req, res);
     res.render('eventsByDate', { date: date, events: dayEvents });
@@ -28,7 +24,6 @@ router.get('/view', async (req: Request, res: Response) => {
 
 // delete event from database
 router.get('/delete/', async (req: Request, res: Response, next: NextFunction) => {
-    // res.send("Delete event with given id")
     await deleteEvent(req, res);
     res.redirect('/events/view?date=' + req.query.date);
 });
